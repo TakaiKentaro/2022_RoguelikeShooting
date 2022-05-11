@@ -19,12 +19,21 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PlayerMove();
+    }
+
+    void PlayerMove()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+
+        Vector2 direction = new Vector2(x, y).normalized;
+        _rb2d.velocity = direction * _moveSpeed;
     }
 }
