@@ -21,6 +21,11 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb2d.AddForce(new Vector2(0, _bulletSpeed), ForceMode2D.Impulse);
+        _rb2d.AddForce(transform.up * _bulletSpeed, ForceMode2D.Impulse);
+    }
+
+    void OnBecameInvisible() //âÊñ äOÇ…èoÇΩÇÁè¡Ç¶ÇÈ
+    {
+        this.gameObject.SetActive(false);
     }
 }
