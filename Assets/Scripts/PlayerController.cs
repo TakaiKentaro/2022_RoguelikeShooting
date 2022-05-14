@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Status")]
@@ -18,14 +18,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("BulletObjectPool")] ObjectPool _objectPool;
 
     
-    [Tooltip("プレイヤーのRigidBody2D")] Rigidbody2D _rb2d;
+    [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
 
 
 
     void Start()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody>();
 
     }
 
@@ -42,11 +42,11 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
-        Vector2 direction = new Vector2(x, y).normalized;
-        _rb2d.velocity = direction * _moveSpeed;
+        Vector3 direction = new Vector3(h, v).normalized;
+        _rb.velocity = direction * _moveSpeed;
     }
 
     /// <summary>
