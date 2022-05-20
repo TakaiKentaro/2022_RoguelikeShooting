@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
@@ -44,9 +44,13 @@ public class PlayerController : MonoBehaviour
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+        Vector3 dir = new Vector3(h, 0, v);
 
-        Vector3 direction = new Vector3(h, v).normalized;
-        _rb.velocity = direction * _moveSpeed;
+        dir = Camera.main.transform.TransformDirection(dir);
+        dir.y = 0;
+
+        transform.rotation = Quaternion.LookRotation(dir);
+        _rb.velocity = dir.normalized * _moveSpeed + _rb.velocity.y * Vector3.up;
     }
 
     /// <summary>
