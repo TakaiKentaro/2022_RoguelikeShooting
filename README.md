@@ -12,7 +12,7 @@ Vampire survivorsをモチーフとした3Dゲーム<br>
      体力<br>
      移動<br>
       
--　敵<br>
+- 敵<br>
     体力<br>
     攻撃力<br>
     
