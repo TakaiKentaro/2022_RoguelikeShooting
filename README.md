@@ -38,7 +38,7 @@ Vampire survivorsをモチーフとした3Dゲーム<br>
 - 操作（キーマウ）<br>
     WASD・十字キー(プレイヤーの移動)<br>
     ESC(一時停止)<br>
-    Space(選択)<br>
+    Space・マウス(選択)<br>
     
 - カメラ<br>
     三人称見下ろし(向き変更不可)<br>
