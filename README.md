@@ -9,6 +9,7 @@ Vampire survivorsをモチーフとした3Dゲーム<br>
      敵の出現<br>
 
 - プレイヤー<br>
+
      体力<br>
      移動<br>
       
@@ -16,22 +17,22 @@ Vampire survivorsをモチーフとした3Dゲーム<br>
     体力<br>
     攻撃力<br>
     
--　武器<br>
+- 武器<br>
     ニンニク<br>
     ブーメラン<br>
     
     
--　スキル<br>
+- スキル<br>
     防御力<br>
     移動速度<br>
     攻撃力<br>
     
--　アイテム<br>
+- アイテム<br>
     時間停止<br>
     落ちてる宝石回収<br>
     必殺技<br>
     
--　マップ<br>
+- マップ<br>
     でかい草原<br>
     
 - 操作（キーマウ）<br>
@@ -39,5 +40,5 @@ Vampire survivorsをモチーフとした3Dゲーム<br>
     ESC(一時停止)<br>
     Space(選択)<br>
     
--　カメラ<br>
+- カメラ<br>
     三人称見下ろし(向き変更不可)<br>
