@@ -54,7 +54,11 @@ public class PlayerController : MonoBehaviour
         dir = Camera.main.transform.TransformDirection(dir);
         dir.y = 0;
 
-        transform.rotation = Quaternion.LookRotation(dir);
+        if (dir != Vector3.zero)
+        {
+            this.transform.forward = dir;
+        }
+
         _rb.velocity = dir.normalized * _playerSpeed + _rb.velocity.y * Vector3.up;
 
         if(h != 0 || v != 0)
