@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤークラス
+/// </summary>
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Status")]
-    [SerializeField, Tooltip("体力")] int _playerHp;
-    [SerializeField, Tooltip("移動速度")] float _moveSpeed;
+    [Header("ステータス")]
+    [SerializeField, Tooltip("体力")] byte _playerHp = 100;
+    [SerializeField, Tooltip("移動速度")] byte _playerSpeed = 3;
+    [SerializeField, Tooltip("攻撃力")] byte _playerPower = 1;
 
     [Header("Muzzle")]
     [SerializeField, Tooltip("MuzzleObject")] GameObject[] _muzzle;
@@ -21,12 +25,13 @@ public class PlayerController : MonoBehaviour
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
 
+    [Tooltip("プレイヤーのアニメーター")] Animator _anim;
 
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,7 +55,16 @@ public class PlayerController : MonoBehaviour
         dir.y = 0;
 
         transform.rotation = Quaternion.LookRotation(dir);
-        _rb.velocity = dir.normalized * _moveSpeed + _rb.velocity.y * Vector3.up;
+        _rb.velocity = dir.normalized * _playerSpeed + _rb.velocity.y * Vector3.up;
+
+        if(h != 0 || v != 0)
+        {
+            _anim.SetBool("Run", true);
+        }
+        else
+        {
+            _anim.SetBool("Run", false);
+        }
     }
 
     /// <summary>
