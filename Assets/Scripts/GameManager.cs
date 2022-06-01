@@ -7,12 +7,29 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    static private GameManager _instance = new GameManager();
+    static public GameManager Instance => _instance;
 
-    [Tooltip("倒した敵の数")] public static int _killEnemyCount;
+    private GameManager() { }
 
-    private void Awake()
+
+    [Tooltip("プレイヤー")] PlayerController _player;
+    [Tooltip("倒した敵の数")] int _killEnemyCount;
+    [Tooltip("時間")] float _gameTime;
+    [Tooltip("プレイヤーのレベル")] int _level = 1;
+    [Tooltip("レベルアップに必要な経験値")] int _exp = 10;
+
+    private void Update()
     {
-        if (instance == null) instance = this;
+        
+    }
+
+    /// <summary>
+    /// 時間経過
+    /// </summary>
+    void CountTime()
+    {
+        _gameTime = Time.time;
+        Debug.Log($"{_gameTime}");
     }
 }

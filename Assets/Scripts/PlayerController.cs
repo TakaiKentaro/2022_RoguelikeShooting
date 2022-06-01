@@ -38,13 +38,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMove();
-        
-        if(Input.GetButtonDown("Jump"))
-        {
-            BulletFire();
-        }
     }
 
+    /// <summary>
+    /// ÉvÉåÉCÉÑÅ[ÇÃà⁄ìÆ
+    /// </summary>
     void PlayerMove()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -68,24 +66,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             _anim.SetBool("Run", false);
-        }
-    }
-
-    /// <summary>
-    /// íeÇë≈Ç¬ä÷êî
-    /// </summary>
-    void BulletFire()
-    {
-        Debug.Log("îÑÇ¡ÇΩ");
-        
-        GameObject go = _objectPool.GetPoolObject();
-        if (go == null) return;
-
-        foreach (GameObject i in _muzzle)
-        {
-            go.transform.position = i.transform.position;
-            go.transform.rotation = i.transform.rotation;
-            go.SetActive(true);
         }
     }
 }
