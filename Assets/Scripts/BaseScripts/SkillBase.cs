@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillBase : MonoBehaviour
+/// <summary>
+/// MonoBehaviourを継承したとき用に用意
+/// </summary>
+interface SkillBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    SkillDef SkillId { get; }
+    void Setup();
+    void Update();
+    void Levelup();
 }
+
+/// <summary>
+/// スキルの名前と番号をここに追加
+/// </summary>
+public enum SkillDef
+{
+    Throwknife = 0,
+    Handgun = 1,
+    Minecart = 2,
+    DamageZone = 3,
+}
+

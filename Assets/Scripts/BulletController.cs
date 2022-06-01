@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,6 +13,8 @@ public class BulletController : MonoBehaviour
 
     [Tooltip("’e‚ÌRigidBody2D")] Rigidbody2D _rb2d;
     [Tooltip("’e‚ÌˆÊ’u")] Transform _playerPos;
+
+
     // Start is called before the first frame update
     void Start()
     {
