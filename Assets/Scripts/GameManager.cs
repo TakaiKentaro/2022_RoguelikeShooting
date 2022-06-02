@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        CountTime();
     }
 
     /// <summary>
@@ -30,6 +30,6 @@ public class GameManager : MonoBehaviour
     void CountTime()
     {
         _gameTime = Time.time;
-        Debug.Log($"{_gameTime}");
+        Debug.Log($"{(int)_gameTime}");
     }
 }

@@ -17,10 +17,6 @@ public class PlayerController : MonoBehaviour
     [Header("Muzzle")]
     [SerializeField, Tooltip("MuzzleObject")] GameObject[] _muzzle;
 
-    [Header("Bullet")]
-    [SerializeField, Tooltip("BulletObject")] GameObject _bullet;
-    [SerializeField, Tooltip("BulletObjectPool")] ObjectPool _objectPool;
-
     
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// 雑魚エネミーのスクリプト
+/// エネミーのスクリプト
 /// </summary>
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour, IPool
 {
     [Header("ステータス")]
     [SerializeField, Tooltip("エネミーの体力")] byte _enemyHp;
@@ -19,9 +17,16 @@ public class EnemyController : MonoBehaviour
     [Tooltip("NavMeshAgent")] NavMeshAgent _agent;
     [Tooltip("プレイヤー")] GameObject _player;
 
+    [Tooltip("時間判定")] float _timer;
     [Tooltip("画面外に出たか判定")] bool _visibleCheck;
 
-    void Start()
+    public bool Waiting { get; set; }
+
+    /// <summary>
+    /// 生成時の初期化. Start関数
+    /// </summary>
+    /// <param name="parent">親Object</param>
+    public void SetUp(Transform parent)
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -29,17 +34,30 @@ public class EnemyController : MonoBehaviour
         _agent.speed = _enemySpeed;
     }
 
-    void Update()
+    /// <summary>
+    /// Useした際の初期化. Start関数
+    /// </summary>
+    public void IsUseSetUp()
     {
-        TrackingPlayer();
+        gameObject.SetActive(true);
     }
 
     /// <summary>
-    /// プレイヤーを追跡する処理
+    /// 使用中の処理. Update関数
     /// </summary>
-    void TrackingPlayer()
+    /// <returns></returns>
+    public bool Execute()
     {
         _agent.destination = _player.transform.position;
+        return _visibleCheck;
+    }
+
+    /// <summary>
+    /// Executeがおわった際の処理, Destroy関数
+    /// </summary>
+    public void Delete()
+    {
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -47,6 +65,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     void OnBecameVisible()
     {
-        gameObject.SetActive(false);
+        _timer += Time.deltaTime;
+
+        if (_timer < 10) _visibleCheck = false;
+        else _visibleCheck = true;
     }
 }
