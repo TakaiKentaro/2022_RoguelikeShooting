@@ -5,11 +5,13 @@ using UnityEngine;
 /// </summary>
 public class EnemySpowner : MonoBehaviour
 {
-    [SerializeField,Tooltip("生成するオブジェクト")] Enemy _enemy;
+    [SerializeField,Tooltip("生成するエネミー１")] Enemy _enemy1;
+    [SerializeField, Tooltip("生成するエネミー2")] Enemy _enemy2;
     ObjectPool<Enemy> _enemyPool;
     void Start()
     {
-        _enemyPool = new ObjectPool<Enemy>(_enemy, this.gameObject.transform);
+        _enemyPool = new ObjectPool<Enemy>(_enemy1, this.gameObject.transform);
+        _enemyPool = new ObjectPool<Enemy>(_enemy2, this.gameObject.transform);
     }
 
     void Update()
