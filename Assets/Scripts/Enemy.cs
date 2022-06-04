@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour, IPool
 
         _agent.speed = _enemySpeed;
 
+        gameObject.SetActive(false);
         Debug.Log(_player);
     }
 
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     public void IsUseSetUp()
     {
+        _timer = 0;
         gameObject.SetActive(true);
     }
 
@@ -52,13 +54,17 @@ public class Enemy : MonoBehaviour, IPool
     /// <returns></returns>
     public bool Execute()
     {
+        _timer += Time.deltaTime;
+        Debug.Log(_timer);
         _agent.destination = _player.transform.position;
-        return _visibleCheck;
+
+        if (_visibleCheck) return false;
+        else return true;
     }
 
     private void Update()
     {
-        _agent.destination = _player.transform.position;
+        Execute();
     }
 
     /// <summary>
@@ -66,6 +72,7 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     public void Delete()
     {
+        Instantiate(_crystal,gameObject.transform.position,Quaternion.identity);
         gameObject.SetActive(false);
     }
 
@@ -74,8 +81,6 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     void OnBecameVisible()
     {
-        _timer += Time.deltaTime;
-
         if (_timer < 10) _visibleCheck = false;
         else _visibleCheck = true;
     }

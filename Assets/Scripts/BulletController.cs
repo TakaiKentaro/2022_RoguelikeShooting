@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(CircleCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class BulletController : MonoBehaviour
 {
     [Header("Status")]
     [SerializeField, Tooltip("É_ÉÅÅ[ÉW")] int _bulletDamage;
     [SerializeField, Tooltip("íeÇÃë¨Ç≥")] int _bulletSpeed;
 
-    [Tooltip("íeÇÃRigidBody2D")] Rigidbody2D _rb2d;
+    [Tooltip("íeÇÃRigidBody2D")] Rigidbody _rb;
     [Tooltip("íeÇÃà íu")] Transform _playerPos;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _rb2d.AddForce(transform.up * _bulletSpeed, ForceMode2D.Impulse);
+        _rb.AddForce(transform.up * _bulletSpeed, ForceMode.Impulse);
     }
 
     void OnBecameInvisible() //âÊñ äOÇ…èoÇΩÇÁè¡Ç¶ÇÈ
