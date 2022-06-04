@@ -10,9 +10,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("ステータス")]
-    [SerializeField, Tooltip("体力")] byte _playerHp = 100;
+    [Tooltip("体力")]public float _playerHp = 100;
     [SerializeField, Tooltip("移動速度")] byte _playerSpeed = 3;
-    [SerializeField, Tooltip("攻撃力")] byte _playerPower = 1;
+    [Tooltip("攻撃力")]public byte _playerPower = 1;
 
     [Header("Muzzle")]
     [SerializeField, Tooltip("MuzzleObject")] GameObject[] _muzzle;
@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("プレイヤーのアニメーター")] Animator _anim;
 
+    private void Awake()
+    {
+        GameManager.Instance.SetPlayer(this);
+    }
 
     void Start()
     {
@@ -63,5 +67,14 @@ public class PlayerController : MonoBehaviour
         {
             _anim.SetBool("Run", false);
         }
+    }
+
+    /// <summary>
+    /// 敵に当たった時の処理
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }

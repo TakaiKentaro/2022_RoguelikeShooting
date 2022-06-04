@@ -6,9 +6,11 @@ using UnityEngine.AI;
 /// </summary>
 public class Enemy : MonoBehaviour, IPool
 {
+    
+
     [Header("ステータス")]
-    [SerializeField, Tooltip("エネミーの体力")] byte _enemyHp;
-    [SerializeField, Tooltip("エネミーの攻撃力")] byte _enemyPower;
+    [SerializeField, Tooltip("エネミーの体力")] float _enemyHp;
+    [SerializeField, Tooltip("エネミーの攻撃力")] float _enemyPower;
     [SerializeField, Tooltip("エネミーのスピード")] float _enemySpeed;
 
     [Header("ドロップするクリスタル")]
@@ -32,6 +34,8 @@ public class Enemy : MonoBehaviour, IPool
         _player = GameObject.FindGameObjectWithTag("Player");
 
         _agent.speed = _enemySpeed;
+
+        Debug.Log(_player);
     }
 
     /// <summary>
@@ -52,6 +56,11 @@ public class Enemy : MonoBehaviour, IPool
         return _visibleCheck;
     }
 
+    private void Update()
+    {
+        _agent.destination = _player.transform.position;
+    }
+
     /// <summary>
     /// Executeがおわった際の処理, Destroy関数
     /// </summary>
@@ -69,5 +78,18 @@ public class Enemy : MonoBehaviour, IPool
 
         if (_timer < 10) _visibleCheck = false;
         else _visibleCheck = true;
+    }
+
+    /// <summary>
+    /// プレイヤー・武器の当たった時の処理
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("プレイヤーに当たった");
+            _player.GetComponent<PlayerController>()._playerHp -= _enemyPower;
+        }
     }
 }

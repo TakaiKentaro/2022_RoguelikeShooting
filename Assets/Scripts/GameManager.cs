@@ -9,27 +9,29 @@ public class GameManager : MonoBehaviour
 {
     static private GameManager _instance = new GameManager();
     static public GameManager Instance => _instance;
-
     private GameManager() { }
 
 
     [Tooltip("プレイヤー")] PlayerController _player;
-    [Tooltip("倒した敵の数")] int _killEnemyCount;
-    [Tooltip("時間")] float _gameTime;
+    public void SetPlayer(PlayerController p) { _player = p; }
+    [Tooltip("倒した敵の数")] int _killCount;
     [Tooltip("プレイヤーのレベル")] int _level = 1;
     [Tooltip("レベルアップに必要な経験値")] int _exp = 10;
-
-    private void Update()
+    /// <summary>
+    /// クリスタルを取得したときの処理
+    /// </summary>
+    public void Exp()
     {
-        CountTime();
+
     }
 
     /// <summary>
-    /// 時間経過
+    /// Enemyを倒したとき呼ぶ関数
     /// </summary>
-    void CountTime()
+    public void KillCount()
     {
-        _gameTime = Time.time;
-        Debug.Log($"{(int)_gameTime}");
+        _killCount++;
     }
+
+    static public PlayerController Player => _instance._player;
 }
