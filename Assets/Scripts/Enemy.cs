@@ -58,13 +58,7 @@ public class Enemy : MonoBehaviour, IPool
         Debug.Log(_timer);
         _agent.destination = _player.transform.position;
 
-        if (_visibleCheck) return false;
-        else return true;
-    }
-
-    private void Update()
-    {
-        Execute();
+        return true;
     }
 
     /// <summary>
