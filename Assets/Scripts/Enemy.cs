@@ -6,7 +6,7 @@ using UnityEngine.AI;
 /// </summary>
 public class Enemy : MonoBehaviour, IPool
 {
-    
+
 
     [Header("ステータス")]
     [SerializeField, Tooltip("エネミーの体力")] float _enemyHp;
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IPool
     [Tooltip("プレイヤー")] GameObject _player;
 
     [Tooltip("時間判定")] float _timer;
-    [Tooltip("画面外に出たか判定")] bool _visibleCheck;
+    [Tooltip("画面外に出たか判定")] bool _check = true;
 
     public bool Waiting { get; set; }
 
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour, IPool
     }
 
     /// <summary>
-    /// 使用中の処理. Update関数
+    /// 使用中の処理. Update関数 trueが返る限り周り続ける
     /// </summary>
     /// <returns></returns>
     public bool Execute()
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour, IPool
         Debug.Log(_timer);
         _agent.destination = _player.transform.position;
 
-        return true;
+        return _check;
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     public void Delete()
     {
-        Instantiate(_crystal,gameObject.transform.position,Quaternion.identity);
+        Instantiate(_crystal, gameObject.transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
 
@@ -75,8 +75,9 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     void OnBecameVisible()
     {
-        if (_timer < 10) _visibleCheck = false;
-        else _visibleCheck = true;
+        _timer = 0;
+        if (_timer > 10) _check = false;
+        else _check = true;
     }
 
     /// <summary>

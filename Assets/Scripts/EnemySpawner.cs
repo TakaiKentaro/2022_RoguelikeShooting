@@ -5,7 +5,7 @@ using System.Collections;
 /// <summary>
 /// エネミーを自動生成させる
 /// </summary>
-public class EnemySpowner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy")]
     [SerializeField, Tooltip("生成するエネミー１")] Enemy _enemy1;

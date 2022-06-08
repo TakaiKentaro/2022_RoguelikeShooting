@@ -13,11 +13,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("体力")]public float _playerHp = 100;
     [SerializeField, Tooltip("移動速度")] byte _playerSpeed = 3;
     [Tooltip("攻撃力")]public byte _playerPower = 1;
-
-    [Header("Muzzle")]
-    [SerializeField, Tooltip("MuzzleObject")] GameObject[] _muzzle;
-
-    
+ 
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
 
