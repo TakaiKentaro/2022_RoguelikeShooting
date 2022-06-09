@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("ステータス")]
     [Tooltip("体力")]public float _playerHp = 100;
-    [SerializeField, Tooltip("移動速度")] byte _playerSpeed = 3;
-    [Tooltip("攻撃力")]public byte _playerPower = 1;
+    [SerializeField, Tooltip("移動速度")] int _playerSpeed = 3;
+    [Tooltip("攻撃力")]public int _playerPower = 1;
  
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
@@ -69,8 +69,11 @@ public class PlayerController : MonoBehaviour
     /// 敵に当たった時の処理
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (other.gameObject.TryGetComponent(out Enemy enemy))
+        {
+
+        }
     }
 }

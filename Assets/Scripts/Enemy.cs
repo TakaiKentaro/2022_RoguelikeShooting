@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IPool
 
 
     [Header("ステータス")]
-    [SerializeField, Tooltip("エネミーの体力")] float _enemyHp;
+    [SerializeField, Tooltip("エネミーの体力")]public int _enemyHp;
     [SerializeField, Tooltip("エネミーの攻撃力")] float _enemyPower;
     [SerializeField, Tooltip("エネミーのスピード")] float _enemySpeed;
 
@@ -54,8 +54,8 @@ public class Enemy : MonoBehaviour, IPool
     /// <returns></returns>
     public bool Execute()
     {
+        if(_enemyHp <= 0) _check = false;
         _timer += Time.deltaTime;
-        Debug.Log(_timer);
         _agent.destination = _player.transform.position;
 
         return _check;
@@ -90,6 +90,11 @@ public class Enemy : MonoBehaviour, IPool
         {
             Debug.Log("プレイヤーに当たった");
             _player.GetComponent<PlayerController>()._playerHp -= _enemyPower;
+        }
+        if(other.gameObject.CompareTag("Weapon"))
+        {
+            _enemyHp -= other.gameObject.GetComponent<Weapon>()._attackDmg;
+            if(_enemyHp <= 0) _check = false;
         }
     }
 }

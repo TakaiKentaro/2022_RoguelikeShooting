@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField, Tooltip("生成するエネミー１")] Enemy _enemy1;
     [SerializeField, Tooltip("生成するエネミー2")] Enemy _enemy2;
 
-    [Tooltip("経過時間")] float _timer;
+    [Tooltip("経過時間")] float _timer = 100;
     public float Timer => _timer;
 
     ObjectPool<Enemy> _enemyPool1;
@@ -29,12 +29,14 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     IEnumerator SpownEnemy()
     {    
-        var enemy1 = _enemyPool1.Use();
-        enemy1.transform.parent = this.transform;
-        var enemy2 = _enemyPool2.Use();
-        enemy2.transform.parent = this.transform;
+        while(true)
+        {
+            var enemy1 = _enemyPool1.Use();
+            enemy1.transform.parent = this.transform;
+            var enemy2 = _enemyPool2.Use();
+            enemy2.transform.parent = this.transform;
 
-        yield return new WaitForSeconds(3);
-        StartCoroutine(SpownEnemy());
+            yield return new WaitForSeconds(Timer);
+        }  
     }
 }
