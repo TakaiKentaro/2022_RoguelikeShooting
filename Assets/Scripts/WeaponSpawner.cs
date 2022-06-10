@@ -8,15 +8,18 @@ using UnityEngine;
 public class WeaponSpawner : MonoBehaviour
 {
     [Header("Wepon")]
-    [SerializeField, Tooltip("¶¬‚·‚éWepon1")] Weapon _wepon1;
+    [SerializeField, Tooltip("¶¬‚·‚éWepon1")] WeaponSword _weapon;
+
+    [Header("¶¬‚·‚éêŠ")]
 
     [Tooltip("Œo‰ßŽžŠÔ")] float _timer;
     public float Timer => _timer;
 
-    ObjectPool<Weapon> _weaponPool1;
+    ObjectPool<WeaponSword> _weaponPool1;
     void Start()
     {
-        _weaponPool1 = new ObjectPool<Weapon>(_wepon1, this.gameObject.transform);
+        _timer = _weapon._timer;
+        _weaponPool1 = new ObjectPool<WeaponSword>(_weapon, this.gameObject.transform);
 
         StartCoroutine(SpownWepon());
     }
@@ -29,7 +32,9 @@ public class WeaponSpawner : MonoBehaviour
         while (true)
         {
             var weapon1 = _weaponPool1.Use();
-            weapon1.transform.parent = this.transform;
+            weapon1.transform.parent = this.transform;   
+
+            Debug.Log($"SwordSpown");
 
             yield return new WaitForSeconds(Timer);
         }
