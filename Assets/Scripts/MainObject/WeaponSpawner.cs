@@ -31,11 +31,13 @@ public class WeaponSpawner : MonoBehaviour
     {
         while (true)
         {
-            var weapon1 = _weaponPool1.Use();
-            weapon1.transform.parent = this.transform;   
+            for(int i = 0; i < _weapon._weaponNum; i++)
+            {
+                var weapon1 = _weaponPool1.Use();
+                weapon1.transform.parent = this.transform;
 
-            Debug.Log($"SwordSpown");
-
+                Debug.Log($"SwordSpown");
+            }
             yield return new WaitForSeconds(Timer);
         }
     }
