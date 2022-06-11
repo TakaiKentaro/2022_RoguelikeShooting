@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour, IPool
     [Tooltip("éûä‘îªíË")] float _timer;
     [Tooltip("âÊñ äOÇ…èoÇΩÇ©îªíË")] bool _check = true;
 
+    [Tooltip("CrystalSpowner")] CrystalSpowner _crystalSpowner;
+
     public bool Waiting { get; set; }
 
     /// <summary>
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour, IPool
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        _crystalSpowner = GameObject.Find("CrystalSpowner").GetComponent<CrystalSpowner>();
 
         _agent.speed = _enemySpeed;
 
@@ -68,7 +71,7 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     public void Delete()
     {
-        Instantiate(_crystal, gameObject.transform.position, Quaternion.identity);
+        _crystalSpowner.SpownCrystal(transform);
         _enemyHp = _saveEnemyHp;
         _check = true;
         gameObject.SetActive(false);

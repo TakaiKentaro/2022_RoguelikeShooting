@@ -41,7 +41,7 @@ public class WeaponSword : MonoBehaviour, IPool
 
         gameObject.transform.position = new Vector3(_player.transform.position.x, 1.5f, _player.transform.position.z);
         gameObject.transform.rotation = _player.transform.rotation;
-               
+
         gameObject.SetActive(true);
     }
 

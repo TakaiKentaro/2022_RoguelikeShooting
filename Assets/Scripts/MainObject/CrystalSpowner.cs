@@ -17,6 +17,6 @@ public class CrystalSpowner : MonoBehaviour
     public void SpownCrystal(Transform tf)
     {
         var crystal = _crystalPool1.Use();
-        crystal.transform.position = tf.position;
+        crystal.transform.position = new Vector3(tf.position.x, tf.position.y + 1, tf.position.z);
     }
 }

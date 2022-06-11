@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out Crystal crystal))
         {
 
         }

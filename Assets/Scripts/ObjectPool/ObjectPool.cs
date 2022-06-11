@@ -24,7 +24,7 @@ public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
     [Tooltip("Poolするオブジェクトを入れるリスト")] List<Pool> _pools;
     [Tooltip("Poolさせるオブジェクト")] Pool _type;
     [Tooltip("Poolさせる位置")] Transform _parent;
-    [Tooltip("Poolしたい数")] int _poolObjectCount　= 100;
+    [Tooltip("Poolしたい数")] int _poolObjectCount　= 50;
 
     /// <summary>
     /// セットアップする
@@ -32,12 +32,12 @@ public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
     /// <param name="pool"></param>
     /// <param name="parent"></param>
     /// <param name="poolObjectCount"></param>
-    public ObjectPool(Pool pool, Transform parent = null, int poolObjectCount = 100)
+    public ObjectPool(Pool pool, Transform parent = null, int poolObjectCount = 50)
     {
         _pools = new List<Pool>();
         _type = pool;
         _parent = parent;
-        _poolObjectCount = 100;
+        _poolObjectCount = 50;
 
         CreatObj();
     }
