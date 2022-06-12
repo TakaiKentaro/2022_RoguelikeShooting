@@ -53,6 +53,8 @@ public class Crystal : MonoBehaviour, IPool
     {
         if (other.TryGetComponent<PlayerController>(out PlayerController playerController))
         {
+            Debug.Log("ƒNƒŠƒXƒ^ƒ‹Žæ“¾");
+            GameManager.Instance.Exp(_exp);
             _check = false;
         }
     }

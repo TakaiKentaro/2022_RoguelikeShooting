@@ -7,22 +7,53 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    static private GameManager _instance = new GameManager();
+    static private GameManager _instance = null;
     static public GameManager Instance => _instance;
-    private GameManager() { }
+    //private GameManager() { }
 
 
     [Tooltip("プレイヤー")] PlayerController _player;
     public void SetPlayer(PlayerController p) { _player = p; }
     [Tooltip("倒した敵の数")] int _killCount;
+
     [Tooltip("プレイヤーのレベル")] int _level = 1;
-    [Tooltip("レベルアップに必要な経験値")] int _exp = 10;
+    [Tooltip("経験値の合計を保存")] int _saveExp = 0;
+    [Tooltip("レベルアップに必要な経験値")] int _expMaxValue = 10;
+
+    private void Awake()
+    {
+        if(!_instance)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    private void OnDestroy()
+    {
+        if(_instance == this)
+        {
+            _instance = null;
+        }
+    }
+
     /// <summary>
     /// クリスタルを取得したときの処理
     /// </summary>
-    public void Exp()
+    public void Exp(int exp)
     {
-
+        Debug.Log("経験値アップ");
+        _saveExp += exp;
+        if(_saveExp >= _expMaxValue)
+        {
+            _level++;
+            _saveExp = 0;
+            _expMaxValue += 10;
+        }
     }
 
     /// <summary>
