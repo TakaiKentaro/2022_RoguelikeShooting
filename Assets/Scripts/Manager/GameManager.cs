@@ -14,11 +14,12 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("プレイヤー")] PlayerController _player;
     public void SetPlayer(PlayerController p) { _player = p; }
-    [Tooltip("倒した敵の数")] int _killCount;
 
-    [Tooltip("プレイヤーのレベル")] int _level = 1;
-    [Tooltip("経験値の合計を保存")] int _saveExp = 0;
-    [Tooltip("レベルアップに必要な経験値")] int _expMaxValue = 10;
+    [Tooltip("倒した敵の数")]public int _killCount;
+    [Tooltip("タイマー")]public float _gameTimer;
+    [Tooltip("プレイヤーのレベル")]public int _level = 1;
+    [Tooltip("経験値の合計を保存")]public int _saveExp = 0;
+    [Tooltip("レベルアップに必要な経験値")]public int _expMaxValue = 10;
 
     private void Awake()
     {
@@ -39,6 +40,12 @@ public class GameManager : MonoBehaviour
         {
             _instance = null;
         }
+    }
+
+
+    private void Update()
+    {
+        _gameTimer += Time.deltaTime;    
     }
 
     /// <summary>
