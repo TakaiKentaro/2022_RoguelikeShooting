@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IPool
 
     [Header("ドロップするクリスタル")]
     [SerializeField, Tooltip("クリスタル")] GameObject _crystal;
+    [SerializeField, Tooltip("落とす確率")] int _rnd;
 
     [Tooltip("NavMeshAgent")] NavMeshAgent _agent;
     [Tooltip("プレイヤー")] GameObject _player;
@@ -71,8 +72,10 @@ public class Enemy : MonoBehaviour, IPool
     /// </summary>
     public void Delete()
     {
-        _crystalSpowner.SpownCrystal(transform);
+        int rnd = Random.Range(0, _rnd);
+        if (rnd != 0) { _crystalSpowner.SpownCrystal(transform); }
         _enemyHp = _saveEnemyHp;
+        GameManager.Instance.KillCount();
         _check = true;
         gameObject.SetActive(false);
     }
@@ -105,7 +108,7 @@ public class Enemy : MonoBehaviour, IPool
         if (other.TryGetComponent(out PlayerController player))
         {
             Debug.Log("プレイヤーに当たった");
-            player.GetComponent<PlayerController>()._playerHp -= _enemyPower;
+            PlayerController._playerHp -= _enemyPower;
         }
     }
 }

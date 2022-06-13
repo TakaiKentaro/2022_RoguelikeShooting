@@ -49,6 +49,15 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// プレイヤーの体力が0になった時に呼ぶ
+    /// </summary>
+    /// <param name="check"></param>
+    void GameOver(bool check)
+    {
+
+    }
+
+    /// <summary>
     /// クリスタルを取得したときの処理
     /// </summary>
     public void Exp(int exp)
