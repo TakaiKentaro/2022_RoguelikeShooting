@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour, IPool
     [Tooltip("エネミーの体力セーブ")] int _saveEnemyHp;
     [SerializeField, Tooltip("エネミーの攻撃力")] float _enemyPower;
     [SerializeField, Tooltip("エネミーのスピード")] float _enemySpeed;
+    [Tooltip("レベルアップ")] float _levelTime = 30;
 
     [Header("ドロップするクリスタル")]
     [SerializeField, Tooltip("クリスタル")] GameObject _crystal;
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour, IPool
     public bool Execute()
     {
         if (_enemyHp <= 0) _check = false;
+        Levelup();
         _timer += Time.deltaTime;
         _agent.destination = _player.transform.position;
 
@@ -74,7 +76,7 @@ public class Enemy : MonoBehaviour, IPool
     {
         int rnd = Random.Range(0, _rnd);
         if (rnd != 0) { _crystalSpowner.SpownCrystal(transform); }
-        _enemyHp = _saveEnemyHp;
+        _enemyHp += _saveEnemyHp;
         GameManager.Instance.KillCount();
         _check = true;
         gameObject.SetActive(false);
@@ -97,6 +99,21 @@ public class Enemy : MonoBehaviour, IPool
     public void OnDamage(int damage)
     {
         _enemyHp -= damage;
+    }
+
+    /// <summary>
+    /// エネミーのレベルアップ
+    /// </summary>
+    public void Levelup()
+    {
+        float time = GameManager.Instance._gameTimer;
+
+        if(time >= _levelTime)
+        {
+            _enemyHp *= 2;
+            _enemyPower *= 2;
+            _levelTime += 30;
+        }
     }
 
     /// <summary>

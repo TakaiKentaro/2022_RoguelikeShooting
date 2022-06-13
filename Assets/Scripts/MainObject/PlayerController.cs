@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -11,10 +9,10 @@ public class PlayerController : MonoBehaviour
 {
     [Header("ステータス")]
     [Tooltip("体力上限")] public static float _playerHpMaxValue = 100;
-    [Tooltip("現在の体力")]public static float _playerHp = 100;
+    [Tooltip("現在の体力")] public static float _playerHp = 100;
     [SerializeField, Tooltip("移動速度")] int _playerSpeed = 3;
-    [Tooltip("攻撃力")]public int _playerPower = 1;
- 
+    [Tooltip("攻撃力")] public int _playerPower = 1;
+
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
 
@@ -30,7 +28,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
+        if (_playerHp <= 0)
+        {
+            Dead();
+        }
+        else
+        {
+            PlayerMove();
+        }
     }
 
     /// <summary>
@@ -38,6 +43,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void PlayerMove()
     {
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Vector3 dir = new Vector3(h, 0, v);
@@ -52,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         _rb.velocity = dir.normalized * _playerSpeed + _rb.velocity.y * Vector3.up;
 
-        if(h != 0 || v != 0)
+        if (h != 0 || v != 0)
         {
             _anim.SetBool("Run", true);
         }
@@ -60,5 +66,14 @@ public class PlayerController : MonoBehaviour
         {
             _anim.SetBool("Run", false);
         }
+    }
+
+    /// <summary>
+    /// 死亡判定
+    /// </summary>
+    void Dead()
+    {
+        _anim.SetBool("Dead", true);
+        GameManager.Instance.GameOver();
     }
 }

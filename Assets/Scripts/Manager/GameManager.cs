@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -52,9 +50,9 @@ public class GameManager : MonoBehaviour
     /// プレイヤーの体力が0になった時に呼ぶ
     /// </summary>
     /// <param name="check"></param>
-    void GameOver(bool check)
+    public void GameOver()
     {
-
+        
     }
 
     /// <summary>
@@ -69,6 +67,22 @@ public class GameManager : MonoBehaviour
             _level++;
             _saveExp = 0;
             _expMaxValue += 10;
+            TimeScale();
+        }
+    }
+
+    /// <summary>
+    /// 全てを止める
+    /// </summary>
+    public void TimeScale()
+    {
+        if(Time.timeScale <= 0.99)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
         }
     }
 
