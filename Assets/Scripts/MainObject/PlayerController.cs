@@ -10,7 +10,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("ステータス")]
-    [Tooltip("体力")]public float _playerHp = 100;
+    [Tooltip("体力上限")] public static float _playerHpMaxValue = 100;
+    [Tooltip("現在の体力")]public static float _playerHp = 100;
     [SerializeField, Tooltip("移動速度")] int _playerSpeed = 3;
     [Tooltip("攻撃力")]public int _playerPower = 1;
  
@@ -19,13 +20,9 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("プレイヤーのアニメーター")] Animator _anim;
 
-    private void Awake()
-    {
-        GameManager.Instance.SetPlayer(this);
-    }
-
     void Start()
     {
+        GameManager.Instance.SetPlayer(this);
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
     }
@@ -62,18 +59,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             _anim.SetBool("Run", false);
-        }
-    }
-
-    /// <summary>
-    /// 敵に当たった時の処理
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.TryGetComponent(out Crystal crystal))
-        {
-
         }
     }
 }

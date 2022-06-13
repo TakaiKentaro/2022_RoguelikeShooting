@@ -8,19 +8,24 @@ using UnityEngine.UI;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
-    [Header("ステータス")]
+    [Header("InGame")]
     [SerializeField, Tooltip("Timeテキスト")] Text _timeText;
     [SerializeField, Tooltip("経験値スライダー")] Slider _expSlider;
     [SerializeField, Tooltip("Levelテキスト")] Text _levelText;
     [SerializeField, Tooltip("Killテキスト")] Text _killText;
 
+    [Header("PlayerStatus")]
+    [SerializeField, Tooltip("プレイヤーのHp")] Slider _playerHp;
+
     [Tooltip("分と秒")] int min, sec;
+
     private void Update()
     {
         Time(GameManager.Instance._gameTimer);
         Exp(GameManager.Instance._expMaxValue, GameManager.Instance._saveExp);
         Leve(GameManager.Instance._level);
         Kill(GameManager.Instance._killCount);
+        PlayerHp();
     }
 
     /// <summary>
@@ -40,7 +45,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="maxExp"></param>
     /// <param name="saveExp"></param>
-    void Exp(int maxExp,int saveExp)
+    void Exp(int maxExp, int saveExp)
     {
         _expSlider.maxValue = maxExp;
         _expSlider.value = saveExp;
@@ -62,5 +67,11 @@ public class UIManager : MonoBehaviour
     void Kill(int count)
     {
         _killText.text = $"Kill {count}";
+    }
+
+    void PlayerHp()
+    {
+        _playerHp.maxValue = PlayerController._playerHpMaxValue;
+        _playerHp.value = PlayerController._playerHp;
     }
 }
