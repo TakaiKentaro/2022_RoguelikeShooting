@@ -9,23 +9,14 @@ public class LevelUpManager : MonoBehaviour
     [Header("LevelUpCanvas")]
     [SerializeField, Tooltip("レベルアップ用Canvas")] GameObject _canvas;
 
-    [SerializeField, Tooltip("スキルボタン1")] Image _button1;
-    [SerializeField, Tooltip("スキルボタン2")] Image _button2;
-    [SerializeField, Tooltip("スキルボタン3")] Image _button3;
+    [SerializeField, Tooltip("スキルボタン1")] RectTransform[] _button;
 
-    [SerializeField, Tooltip("スキルテキスト1")] Text _text1;
-    [SerializeField, Tooltip("スキルテキスト2")] Text _text2;
-    [SerializeField, Tooltip("スキルテキスト3")] Text _text3;
+    [Tooltip("出力する個数の上限")]int count = 3;
 
     private void Start()
     {
-        _button1 = GetComponent<Image>();
-        _button2 = GetComponent<Image>();
-        _button3 = GetComponent<Image>();
-        _text1 = GetComponent<Text>();
-        _text2 = GetComponent<Text>();
-        _text3 = GetComponent<Text>();
-
+        GameManager.Instance.SetLevelManager(this);
+        foreach(var i in _button) i.gameObject.SetActive(false);
         _canvas.gameObject.SetActive(false);
     }
 
@@ -34,7 +25,37 @@ public class LevelUpManager : MonoBehaviour
     /// </summary>
     public void LevelUp()
     {
+        _canvas.gameObject.SetActive(true);
 
+        while (count-- >= 0)
+        {
+            int index = Random.Range(0, _button.Length - 1);
+            Debug.Log(index);
+            if(count == 0)
+            {
+                _button[index].localPosition = new Vector2(-450,0);
+                _button[index].gameObject.SetActive(true);
+            }
+            if(count == 1)
+            {
+                _button[index].localPosition = new Vector2(0, 0);
+                _button[index].gameObject.SetActive(true);
+            }
+            if(count == 2)
+            {
+                _button[index].localPosition = new Vector2(450, 0);
+                _button[index].gameObject.SetActive(true);
+            }
+        }
+        count = 3; 
     }
 
+    /// <summary>
+    /// Canvasを非アクティブ化
+    /// </summary>
+    public void OnClickClose()
+    {
+        foreach (var i in _button) i.gameObject.SetActive(false);
+        _canvas.gameObject.SetActive(false);
+    }
 }
