@@ -5,12 +5,12 @@ using UnityEngine;
 /// </summary>
 public class SkillManager : MonoBehaviour
 {
-    [Tooltip("SwordUpレベル")] static int _swordUpLevel;
-    [Tooltip("SwordPlusレベル")] static int _swordPlusLevel;
-    [Tooltip("SwordIntervalレベル")] static int _swordIntervalLevel;
-    [Tooltip("SpeedUpレベル")] static int _speedUpLevel;
-    [Tooltip("HealthUpレベル")] static int _healthUpLevel;
-    [Tooltip("HealthRecoveryレベル")] static int _healthRecoveryLevel;
+    [Tooltip("SwordUpレベル")] static int _swordUpLevel = 1;
+    [Tooltip("SwordPlusレベル")] static int _swordPlusLevel = 1;
+    [Tooltip("SwordIntervalレベル")] static int _swordIntervalLevel = 1;
+    [Tooltip("SpeedUpレベル")] static int _speedUpLevel = 1;
+    [Tooltip("HealthUpレベル")] static int _healthUpLevel = 1;
+    [Tooltip("HealthRecoveryレベル")] static int _healthRecoveryLevel = 1;
 
     /// <summary>
     /// SwordUpスキルを取得

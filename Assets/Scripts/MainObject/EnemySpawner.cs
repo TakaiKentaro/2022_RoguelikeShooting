@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("SpownPoint")]
     [SerializeField, Tooltip("エネミーのスポーンする場所")] Transform[] _spownPoint;
 
-    [Tooltip("経過時間")] public float _timer = 2;
+    [Tooltip("経過時間")] public float _timer = 5;
     public float Timer => _timer;
 
     ObjectPool<Enemy> _enemyPool1;
@@ -36,11 +36,13 @@ public class EnemySpawner : MonoBehaviour
         {
             int _rnd1 = Random.Range(0, _spownPoint.Length - 1);
             var enemy1 = _enemyPool1.Use();
-            enemy1.transform.parent = _spownPoint[_rnd1];
+            enemy1.transform.parent = this.transform;
+            enemy1.transform.position = _spownPoint[_rnd1].position;
 
             int _rnd2 = Random.Range(0, _spownPoint.Length - 1);
             var enemy2 = _enemyPool2.Use();
-            enemy2.transform.parent = _spownPoint[_rnd2];
+            enemy2.transform.parent = this.transform;
+            enemy2.transform.position = _spownPoint[_rnd2].position;
 
             Debug.Log($"EnemySpown");
 

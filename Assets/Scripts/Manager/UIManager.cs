@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="maxExp"></param>
     /// <param name="saveExp"></param>
-    void Exp(int maxExp, int saveExp)
+    void Exp(float maxExp, float saveExp)
     {
         _expSlider.maxValue = maxExp;
         _expSlider.value = saveExp;

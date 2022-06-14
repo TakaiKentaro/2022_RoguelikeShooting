@@ -13,15 +13,19 @@ public class GameManager : MonoBehaviour
     [Tooltip("プレイヤー")] PlayerController _player;
     public void SetPlayer(PlayerController p) { _player = p; }
 
-    [Tooltip("倒した敵の数")]public int _killCount;
-    [Tooltip("タイマー")]public float _gameTimer;
-    [Tooltip("プレイヤーのレベル")]public int _level = 1;
-    [Tooltip("経験値の合計を保存")]public int _saveExp = 0;
-    [Tooltip("レベルアップに必要な経験値")]public int _expMaxValue = 10;
+    [Tooltip("レベルアップマネージャー")] LevelUpManager _levelUpManager;
+    public void SetLevelManager(LevelUpManager lev) { _levelUpManager = lev; }
+
+    [Tooltip("倒した敵の数")] public int _killCount;
+    [Tooltip("タイマー")] public float _gameTimer;
+    [Tooltip("プレイヤーのレベル")] public int _level = 1;
+    [Tooltip("経験値の合計を保存")] public int _saveExp = 0;
+    [Tooltip("レベルアップに必要な経験値")] public int _expMaxValue = 5;
+
 
     private void Awake()
     {
-        if(!_instance)
+        if (!_instance)
         {
             _instance = this;
         }
@@ -29,12 +33,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+
     }
 
     private void OnDestroy()
     {
-        if(_instance == this)
+        if (_instance == this)
         {
             _instance = null;
         }
@@ -43,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        _gameTimer += Time.deltaTime;    
+        _gameTimer += Time.deltaTime;
     }
 
     /// <summary>
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
     /// <param name="check"></param>
     public void GameOver()
     {
-        
+
     }
 
     /// <summary>
@@ -62,21 +66,23 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("経験値アップ");
         _saveExp += exp;
-        if(_saveExp >= _expMaxValue)
+        if (_saveExp >= _expMaxValue)
         {
+            Debug.Log("レベルアップ");
             _level++;
             _saveExp = 0;
-            _expMaxValue += 10;
-            TimeScale();
+            _expMaxValue += 5;
+            _levelUpManager.LevelUp();
+            TimeScale();   
         }
     }
 
     /// <summary>
-    /// 全てを止める
+    /// ゲーム時間制御
     /// </summary>
     public void TimeScale()
     {
-        if(Time.timeScale <= 0.99)
+        if (Time.timeScale <= 0.99)
         {
             Time.timeScale = 1;
         }
