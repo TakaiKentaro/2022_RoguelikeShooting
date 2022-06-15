@@ -5,12 +5,12 @@ using UnityEngine;
 /// </summary>
 public class SkillManager : MonoBehaviour
 {
-    [Tooltip("SwordUpレベル")] static int _swordUpLevel = 1;
-    [Tooltip("SwordPlusレベル")] static int _swordPlusLevel = 1;
-    [Tooltip("SwordIntervalレベル")] static int _swordIntervalLevel = 1;
-    [Tooltip("SpeedUpレベル")] static int _speedUpLevel = 1;
-    [Tooltip("HealthUpレベル")] static int _healthUpLevel = 1;
-    [Tooltip("HealthRecoveryレベル")] static int _healthRecoveryLevel = 1;
+    [Tooltip("SwordUpレベル")] static public int _swordUpLevel = 1;
+    [Tooltip("SwordPlusレベル")] static public int _swordPlusLevel = 1;
+    [Tooltip("SwordIntervalレベル")] static public float _swordIntervalLevel = 0.5f;
+    [Tooltip("SpeedUpレベル")] static public int _speedUpLevel = 1;
+    [Tooltip("HealthUpレベル")] static public int _healthUpLevel = 10;
+    [Tooltip("HealthRecoveryレベル")] static public int _healthRecoveryLevel = 1;
 
     /// <summary>
     /// SwordUpスキルを取得
@@ -18,6 +18,7 @@ public class SkillManager : MonoBehaviour
     public void SwordUp()
     {
         _swordUpLevel++;
+        WeaponSword._attackDmg += _swordUpLevel;
     }
 
     /// <summary>
@@ -25,7 +26,7 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     public void SwordPlus()
     {
-        if (_swordPlusLevel <= 8) _swordPlusLevel++;
+        _swordPlusLevel++;
     }
 
     /// <summary>
@@ -33,7 +34,7 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     public void SwordInterval()
     {
-        _swordIntervalLevel++;
+        WeaponSpawner._timer -= _swordIntervalLevel;
     }
 
     /// <summary>
@@ -41,7 +42,7 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     public void SpeedUp()
     {
-        _speedUpLevel++;
+        PlayerController._playerSpeed += _speedUpLevel;
     }
 
     /// <summary>
@@ -49,7 +50,7 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     public void HealthUp()
     {
-        _healthUpLevel++;
+        PlayerController._playerHpMaxValue += _healthUpLevel;
     }
 
     /// <summary>
