@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponSpeed: 5
-  _weaponLevel: 1
   _timer: 3
   _angle: 0
 --- !u!54 &-833531287258809430

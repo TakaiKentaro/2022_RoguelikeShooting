@@ -8,7 +8,6 @@ public class WeaponSword : MonoBehaviour, IPool
     [Header("ステータス")]
     [Tooltip("攻撃力")] static public int _attackDmg = 2;
     [Tooltip("移動速度")] public float _weaponSpeed;
-    [Tooltip("レベル")] public int _weaponLevel;
     [Tooltip("インターバル")] public float _timer = 3;
     [SerializeField, Tooltip("出る角度")] float _angle = 0;
 
@@ -38,16 +37,11 @@ public class WeaponSword : MonoBehaviour, IPool
     {
         _timer = 0;
 
-        int level = SkillManager._swordPlusLevel % 8;
-
-        gameObject.transform.position = new Vector3(_player.transform.position.x, 1.5f, _player.transform.position.z);
-        gameObject.transform.rotation = new Quaternion
-            (
-            _player.transform.rotation.x,
-            _player.transform.rotation.y + _angle,
-            _player.transform.rotation.z,
-            _player.transform.rotation.w
-            ); 
+        gameObject.transform.position = new Vector3(_player.transform.position.x, 1.5f, _player.transform.position.z);;
+        gameObject.transform.rotation = _player.transform.rotation;
+        var t = transform.localEulerAngles;
+        t.y += _angle;
+        transform.localEulerAngles = t;
 
         gameObject.SetActive(true);
 
