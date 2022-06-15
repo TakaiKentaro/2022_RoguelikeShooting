@@ -1,15 +1,16 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(SphereCollider))]
 public class WeaponSword : MonoBehaviour, IPool
 {
 
     [Header("ステータス")]
-    [Tooltip("攻撃力")] public int _attackDmg = 1;
+    [Tooltip("攻撃力")] static public int _attackDmg = 2;
     [Tooltip("移動速度")] public float _weaponSpeed;
-    [Tooltip("個数")] public int _weaponNum = 1;
     [Tooltip("レベル")] public int _weaponLevel;
-    [Tooltip("インターバル")]public float _timer = 3;
+    [Tooltip("インターバル")] public float _timer = 3;
+    [SerializeField, Tooltip("出る角度")] float _angle = 0;
 
     [Tooltip("消える判定")] bool _check = true;
 
@@ -27,8 +28,6 @@ public class WeaponSword : MonoBehaviour, IPool
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody>();
-        LevelSet(_weaponLevel);
-
         gameObject.SetActive(false);
     }
 
@@ -39,10 +38,20 @@ public class WeaponSword : MonoBehaviour, IPool
     {
         _timer = 0;
 
+        int level = SkillManager._swordPlusLevel % 8;
+
         gameObject.transform.position = new Vector3(_player.transform.position.x, 1.5f, _player.transform.position.z);
-        gameObject.transform.rotation = _player.transform.rotation;
+        gameObject.transform.rotation = new Quaternion
+            (
+            _player.transform.rotation.x,
+            _player.transform.rotation.y + _angle,
+            _player.transform.rotation.z,
+            _player.transform.rotation.w
+            ); 
 
         gameObject.SetActive(true);
+
+        StartCoroutine(Destroy());
     }
 
     /// <summary>
@@ -74,45 +83,18 @@ public class WeaponSword : MonoBehaviour, IPool
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             Debug.Log("敵に当たった");
-            enemy.OnDamage(_player._playerPower + _attackDmg);
+            enemy.OnDamage(+_attackDmg);
             //_check = false;
         }
     }
 
     /// <summary>
-    /// 武器のレベルに応じた処理
+    /// 時間経過で消える処理
     /// </summary>
-    /// <param name="level"></param>
-    public void LevelSet(int level)
+    /// <returns></returns>
+    IEnumerator Destroy()
     {
-        switch (level)
-        {
-            case 1:
-                _attackDmg = 1;
-                _timer = 3;
-                
-                _weaponNum = 1;
-                break;
-            case 2:
-                _weaponNum = 2;
-                break;
-            case 3:
-                _timer = 2.5f;
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
-            case 10:
-                break;
-        }
+        yield return new WaitForSeconds(10);
+        _check = false;
     }
 }

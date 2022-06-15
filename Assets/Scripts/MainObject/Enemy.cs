@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, IPool
     [Tooltip("エネミーの体力セーブ")] int _saveEnemyHp;
     [SerializeField, Tooltip("エネミーの攻撃力")] float _enemyPower;
     [SerializeField, Tooltip("エネミーのスピード")] float _enemySpeed;
-    [Tooltip("レベルアップ")] float _levelTime = 30;
+    [Tooltip("レベルアップ")] float _levelTime = 60;
 
     [Header("ドロップするクリスタル")]
     [SerializeField, Tooltip("クリスタル")] GameObject _crystal;
@@ -110,9 +110,9 @@ public class Enemy : MonoBehaviour, IPool
 
         if(time >= _levelTime)
         {
-            _enemyHp *= 2;
+            _saveEnemyHp *= 2;
             _enemyPower *= 2;
-            _levelTime += 30;
+            _levelTime += 60;
         }
     }
 

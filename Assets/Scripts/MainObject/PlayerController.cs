@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// プレイヤークラス
@@ -10,8 +11,7 @@ public class PlayerController : MonoBehaviour
     [Header("ステータス")]
     [Tooltip("体力上限")] public static float _playerHpMaxValue = 100;
     [Tooltip("現在の体力")] public static float _playerHp = 100;
-    [SerializeField, Tooltip("移動速度")] int _playerSpeed = 3;
-    [Tooltip("攻撃力")] public int _playerPower = 1;
+    [SerializeField, Tooltip("移動速度")]public static int _playerSpeed = 3;
 
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.SetPlayer(this);
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
+        StartCoroutine(HealHp());
     }
 
     // Update is called once per frame
@@ -75,5 +76,14 @@ public class PlayerController : MonoBehaviour
     {
         _anim.SetBool("Dead", true);
         GameManager.Instance.GameOver();
+    }
+
+    IEnumerator HealHp()
+    {
+        while(true)
+        {
+            _playerHp += SkillManager._healthRecoveryLevel;
+            yield return new WaitForSeconds(3);
+        }
     }
 }

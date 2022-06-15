@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("SpownPoint")]
     [SerializeField, Tooltip("エネミーのスポーンする場所")] Transform[] _spownPoint;
 
-    [Tooltip("経過時間")] public float _timer = 5;
+    [Tooltip("経過時間")]float _timer = 5;
     public float Timer => _timer;
 
     ObjectPool<Enemy> _enemyPool1;
