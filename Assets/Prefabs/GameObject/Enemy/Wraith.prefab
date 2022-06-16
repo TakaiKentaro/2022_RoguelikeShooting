@@ -1320,6 +1320,7 @@ MonoBehaviour:
   _num: 3
   _crystal: {fileID: 1970479628187362868, guid: b33c06985e299274982be65af6a9735e, type: 3}
   _rnd: 10
+  _audioClip: {fileID: 8300000, guid: 3a74f9baaeb81ac45b26fa2786c51ff7, type: 3}
 --- !u!1 &4069280809943233647
 GameObject:
   m_ObjectHideFlags: 0

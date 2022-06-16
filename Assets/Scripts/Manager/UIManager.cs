@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
     /// <param name="level"></param>
     void Leve(int level)
     {
-        _levelText.text = $"Level {level}";
+        _levelText.text = $"ƒŒƒxƒ‹ {level}";
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
     /// <param name="count"></param>
     void Kill(int count)
     {
-        _killText.text = $"Kill {count}";
+        _killText.text = $"ƒLƒ‹ {count}";
     }
 
     void PlayerHp()

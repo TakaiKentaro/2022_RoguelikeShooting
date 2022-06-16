@@ -5,7 +5,7 @@ public class Crystal : MonoBehaviour, IPool
     [Header("経験値")]
     [SerializeField, Tooltip("得られる経験値")] int _exp;
 
-    [Tooltip("Audio")] ClickAudioManager _source;
+    [Tooltip("Audio")] AudioManager _source;
 
     [Tooltip("判定")] bool _check = true;
     public bool Waiting { get; set; }
@@ -16,7 +16,7 @@ public class Crystal : MonoBehaviour, IPool
     /// <param name="parent">親Object</param>
     public void SetUp(Transform parent)
     {
-        _source = GameObject.Find("GetSE").GetComponent<ClickAudioManager>();
+        _source = GameObject.Find("GetSE").GetComponent<AudioManager>();
         gameObject.SetActive(false);
     }
 
