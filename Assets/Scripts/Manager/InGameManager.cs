@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class InGameManager : MonoBehaviour
 {
     [Header("AudioSource")]
-    [SerializeField,Tooltip("Audio")] AudioSource _audioSource;
+    [SerializeField, Tooltip("AudioClip")] AudioSource _audioSource; 
+    [SerializeField,Tooltip("Audio")] AudioClip _audioClip;
     void Start()
     {
         GameManager.Instance.SetInGameManager(this); 
@@ -24,7 +25,7 @@ public class InGameManager : MonoBehaviour
 
     IEnumerator ResultTime()
     {
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_audioClip);
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("ResultScene");
     }
