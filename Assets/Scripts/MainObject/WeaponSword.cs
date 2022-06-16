@@ -37,7 +37,7 @@ public class WeaponSword : MonoBehaviour, IPool
     {
         _timer = 0;
 
-        gameObject.transform.position = new Vector3(_player.transform.position.x, 1.5f, _player.transform.position.z);;
+        gameObject.transform.position = new Vector3(_player.transform.position.x, 1f, _player.transform.position.z);;
         gameObject.transform.rotation = _player.transform.rotation;
         var t = transform.localEulerAngles;
         t.y += _angle;

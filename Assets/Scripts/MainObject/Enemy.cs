@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour, IPool
     [Tooltip("エネミーの体力セーブ")] int _saveEnemyHp;
     [SerializeField, Tooltip("エネミーの攻撃力")] float _enemyPower;
     [SerializeField, Tooltip("エネミーのスピード")] float _enemySpeed;
+    [SerializeField, Tooltip("クリスタル番号")] int _num;
     [Tooltip("レベルアップ")] float _levelTime = 60;
 
     [Header("ドロップするクリスタル")]
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour, IPool
     public void Delete()
     {
         int rnd = Random.Range(0, _rnd);
-        if (rnd != 0) { _crystalSpowner.SpownCrystal(transform); }
+        if (rnd != 0) { _crystalSpowner.SpownCrystal(transform,_num); }
         _enemyHp += _saveEnemyHp;
         GameManager.Instance.KillCount();
         _check = true;

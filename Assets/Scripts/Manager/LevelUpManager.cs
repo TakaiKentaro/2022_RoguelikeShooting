@@ -32,7 +32,7 @@ public class LevelUpManager : MonoBehaviour
 
         while (count < 3)
         {
-            int index = Random.Range(0, _button.Length - 1);
+            int index = Random.Range(0, _button.Length);
             Debug.Log(index);
             Debug.Log($"ƒJƒEƒ“ƒg{count}");
             if (_check[index] == true)
