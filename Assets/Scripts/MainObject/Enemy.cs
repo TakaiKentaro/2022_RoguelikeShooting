@@ -113,6 +113,7 @@ public class Enemy : MonoBehaviour, IPool
         {
             _saveEnemyHp *= 2;
             _enemyPower *= 2;
+            _enemySpeed += 0.2f;
             _levelTime += 60;
         }
     }

@@ -5,19 +5,19 @@ using UnityEngine;
 /// </summary>
 public class SkillManager : MonoBehaviour
 {
-    [Tooltip("SwordUpレベル")] static public int _swordUpLevel = 1;
-    [Tooltip("SwordPlusレベル")] static public int _swordPlusLevel = 1;
-    [Tooltip("SwordIntervalレベル")] static public float _swordIntervalLevel = 0.5f;
-    [Tooltip("SpeedUpレベル")] static public int _speedUpLevel = 1;
-    [Tooltip("HealthUpレベル")] static public int _healthUpLevel = 10;
-    [Tooltip("HealthRecoveryレベル")] static public int _healthRecoveryLevel = 1;
+    [Tooltip("SwordUpレベル")] static public int _swordUpLevel;
+    [Tooltip("SwordPlusレベル")] static public int _swordPlusLevel;
+    [Tooltip("SwordIntervalレベル")] static public float _swordIntervalLevel;
+    [Tooltip("SpeedUpレベル")] static public float _speedUpLevel;
+    [Tooltip("HealthUpレベル")] static public int _healthUpLevel;
+    [Tooltip("HealthRecoveryレベル")] static public int _healthRecoveryLevel;
 
     private void Awake()
     {
         _swordUpLevel = 1;
         _swordPlusLevel = 1;
-        _swordIntervalLevel = 0.5f;
-        _speedUpLevel = 1;
+        _swordIntervalLevel = 0.1f;
+        _speedUpLevel = 0.5f;
         _healthUpLevel = 10;
         _healthRecoveryLevel = 1;
     }

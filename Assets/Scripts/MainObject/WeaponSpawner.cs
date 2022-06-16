@@ -53,49 +53,93 @@ public class WeaponSpawner : MonoBehaviour
     {
         while (true)
         {
-            if(SkillManager._swordPlusLevel > 0)
+            int level = SkillManager._swordPlusLevel;
+
+            if (level > 0)
             {
                 var weapon1 = _weaponPool1.Use();
                 weapon1.transform.parent = this.transform;
+                if (level > 8)
+                {
+                    StartCoroutine(SpownWepon2(weapon1));
+                }
             }
-            if (SkillManager._swordPlusLevel > 1)
+            if (level > 1)
             {
                 var weapon2 = _weaponPool2.Use();
                 weapon2.transform.parent = this.transform;
+                if (level > 9)
+                {
+                    StartCoroutine(SpownWepon2(weapon2));
+                }
             }
-            if (SkillManager._swordPlusLevel > 2)
+            if (level > 2)
             {
                 var weapon3 = _weaponPool3.Use();
                 weapon3.transform.parent = this.transform;
+                if (level > 10)
+                {
+                    StartCoroutine(SpownWepon2(weapon3));
+                }
             }
-            if (SkillManager._swordPlusLevel > 3)
+            if (level > 3)
             {
                 var weapon4 = _weaponPool4.Use();
                 weapon4.transform.parent = this.transform;
+                if (level > 11)
+                {
+                    StartCoroutine(SpownWepon2(weapon4));
+                }
             }
-            if (SkillManager._swordPlusLevel > 4)
+            if (level > 4)
             {
                 var weapon5 = _weaponPool5.Use();
                 weapon5.transform.parent = this.transform;
+                if (level > 12)
+                {
+                    StartCoroutine(SpownWepon2(weapon5));
+                }
             }
-            if (SkillManager._swordPlusLevel > 5)
+            if (level > 5)
             {
                 var weapon6 = _weaponPool6.Use();
                 weapon6.transform.parent = this.transform;
+                if (level > 13)
+                {
+                    StartCoroutine(SpownWepon2(weapon6));
+                }
             }
-            if (SkillManager._swordPlusLevel > 6)
+            if (level > 6)
             {
                 var weapon7 = _weaponPool7.Use();
                 weapon7.transform.parent = this.transform;
+                if (level > 14)
+                {
+                    StartCoroutine(SpownWepon2(weapon7));
+                }
             }
-            if (SkillManager._swordPlusLevel > 7)
+            if (level > 7)
             {
                 var weapon8 = _weaponPool8.Use();
                 weapon8.transform.parent = this.transform;
+                if (level > 15)
+                {
+                    StartCoroutine(SpownWepon2(weapon8));
+                }
             }
-
 
             yield return new WaitForSeconds(Timer);
         }
+    }
+
+    /// <summary>
+    /// Sword‚Ì”‚ª8‚ğ’´‚¦‚½‚ç
+    /// </summary>
+    /// <param name="wepon"></param>
+    /// <returns></returns>
+    IEnumerator SpownWepon2(WeaponSword wepon)
+    {
+        wepon.transform.parent = this.transform;
+        yield return new WaitForSeconds(1);    
     }
 }

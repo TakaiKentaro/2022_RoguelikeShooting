@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class InGameManager : MonoBehaviour
 {
+    [Header("AudioSource")]
+    [SerializeField,Tooltip("Audio")] AudioSource _audioSource;
     void Start()
     {
-        GameManager.Instance.SetInGameManager(this);
+        GameManager.Instance.SetInGameManager(this); 
     }
 
     /// <summary>
@@ -22,6 +24,7 @@ public class InGameManager : MonoBehaviour
 
     IEnumerator ResultTime()
     {
+        _audioSource.Play();
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("ResultScene");
     }

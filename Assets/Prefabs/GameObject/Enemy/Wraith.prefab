@@ -1319,7 +1319,7 @@ MonoBehaviour:
   _enemySpeed: 2
   _num: 3
   _crystal: {fileID: 1970479628187362868, guid: b33c06985e299274982be65af6a9735e, type: 3}
-  _rnd: 0
+  _rnd: 10
 --- !u!1 &4069280809943233647
 GameObject:
   m_ObjectHideFlags: 0

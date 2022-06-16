@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [Header("ステータス")]
     [Tooltip("体力上限")] public static float _playerHpMaxValue = 100;
     [Tooltip("現在の体力")] public static float _playerHp = 100;
-    [SerializeField, Tooltip("移動速度")]public static int _playerSpeed = 3;
+    [SerializeField, Tooltip("移動速度")]public static float _playerSpeed = 3;
 
     [Tooltip("プレイヤーのRigidBody2D")] Rigidbody _rb;
     [Tooltip("プレイヤーの位置")] Transform _playerPos;
