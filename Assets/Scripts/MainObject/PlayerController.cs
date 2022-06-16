@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         GameManager.Instance.SetPlayer(this);
+        _playerHpMaxValue = 100;
+        _playerHp = 100;
+        _playerSpeed = 3;
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         StartCoroutine(HealHp());

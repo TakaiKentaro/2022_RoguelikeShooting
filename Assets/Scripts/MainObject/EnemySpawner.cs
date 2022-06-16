@@ -24,13 +24,14 @@ public class EnemySpawner : MonoBehaviour
         _enemyPool1 = new ObjectPool<Enemy>(_enemy1, this.gameObject.transform);
         _enemyPool2 = new ObjectPool<Enemy>(_enemy2, this.gameObject.transform);
 
-        StartCoroutine(SpownEnemy());
+        StartCoroutine(SpawnEnemy());
+        StartCoroutine(CountUp());
     }
 
     /// <summary>
     /// ìGÇÉXÉ|Å[ÉìÇ≥ÇπÇÈ
     /// </summary>
-    IEnumerator SpownEnemy()
+    IEnumerator SpawnEnemy()
     {
         while (true)
         {
@@ -39,14 +40,30 @@ public class EnemySpawner : MonoBehaviour
             enemy1.transform.parent = this.transform;
             enemy1.transform.position = _spownPoint[_rnd1].position;
 
-            int _rnd2 = Random.Range(0, _spownPoint.Length - 1);
-            var enemy2 = _enemyPool2.Use();
-            enemy2.transform.parent = this.transform;
-            enemy2.transform.position = _spownPoint[_rnd2].position;
+            if(GameManager.Instance._gameTimer >= 60)
+            {
+                int _rnd2 = Random.Range(0, _spownPoint.Length - 1);
+                var enemy2 = _enemyPool2.Use();
+                enemy2.transform.parent = this.transform;
+                enemy2.transform.position = _spownPoint[_rnd2].position;
+            }
 
             Debug.Log($"EnemySpown");
 
             yield return new WaitForSeconds(Timer);
+        }
+    }
+
+    /// <summary>
+    /// ìGÇÃèoåªéûä‘ÇÃíZèk
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator CountUp()
+    {
+        while(true)
+        {
+            _timer -= 0.2f;
+            yield return new WaitForSeconds(30);
         }
     }
 }

@@ -12,6 +12,16 @@ public class SkillManager : MonoBehaviour
     [Tooltip("HealthUpレベル")] static public int _healthUpLevel = 10;
     [Tooltip("HealthRecoveryレベル")] static public int _healthRecoveryLevel = 1;
 
+    private void Awake()
+    {
+        _swordUpLevel = 1;
+        _swordPlusLevel = 1;
+        _swordIntervalLevel = 0.5f;
+        _speedUpLevel = 1;
+        _healthUpLevel = 10;
+        _healthRecoveryLevel = 1;
+    }
+
     /// <summary>
     /// SwordUpスキルを取得
     /// </summary>

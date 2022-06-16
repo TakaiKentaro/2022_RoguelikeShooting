@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     [Tooltip("レベルアップマネージャー")] LevelUpManager _levelUpManager;
     public void SetLevelManager(LevelUpManager lev) { _levelUpManager = lev; }
 
-    [Tooltip("倒した敵の数")] public int _killCount;
+    [Tooltip("InGameマネージャー")] InGameManager _inGameManager;
+    public void SetInGameManager(InGameManager ingame) { _inGameManager = ingame; }
+
+    [Tooltip("倒した敵の数")] public static int _killCount;
     [Tooltip("タイマー")] public float _gameTimer;
     [Tooltip("プレイヤーのレベル")] public int _level = 1;
     [Tooltip("経験値の合計を保存")] public int _saveExp = 0;
@@ -33,7 +36,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        _killCount = 0;
     }
 
     private void OnDestroy()
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
     /// <param name="check"></param>
     public void GameOver()
     {
-
+        _inGameManager.ResultScene();
     }
 
     /// <summary>
@@ -101,4 +104,6 @@ public class GameManager : MonoBehaviour
     }
 
     static public PlayerController Player => _instance._player;
+    static public LevelUpManager LevelUpManager => _instance._levelUpManager;
+    static public InGameManager InGameManager => _instance._inGameManager;
 }

@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
         Time(GameManager.Instance._gameTimer);
         Exp(GameManager.Instance._expMaxValue, GameManager.Instance._saveExp);
         Leve(GameManager.Instance._level);
-        Kill(GameManager.Instance._killCount);
+        Kill(GameManager._killCount);
         PlayerHp();
     }
 
