@@ -24,6 +24,18 @@ public class DamageUIManager : MonoBehaviour
         _damageText.text = $"{damage}";
 
         transform.position = new Vector3(tf.position.x, tf.position.y + 2, tf.position.z);
+        if(damage < 5)
+        {
+            _damageText.color = new Color(255, 255, 255);
+        }
+        else if(damage < 10)
+        {
+            _damageText.color = new Color(255, 150, 120);
+        }
+        else
+        {
+            _damageText.color = new Color(150, 0, 30);
+        }
         StartCoroutine(Time());
     }
 
