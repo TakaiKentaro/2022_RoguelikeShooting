@@ -11,6 +11,8 @@ public class WeaponSword : MonoBehaviour, IPool
     [Tooltip("インターバル")] public float _timer = 3;
     [SerializeField, Tooltip("出る角度")] float _angle = 0;
 
+    [Tooltip("カウント")] int _count;
+
     [Tooltip("消える判定")] bool _check = true;
 
     [Tooltip("Player")] PlayerController _player;
@@ -42,7 +44,7 @@ public class WeaponSword : MonoBehaviour, IPool
         var t = transform.localEulerAngles;
         t.y += _angle;
         transform.localEulerAngles = t;
-
+        _count = 0;
         gameObject.SetActive(true);
 
         StartCoroutine(Destroy());
@@ -77,8 +79,12 @@ public class WeaponSword : MonoBehaviour, IPool
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
             Debug.Log("敵に当たった");
-            enemy.OnDamage(+_attackDmg);
-            //_check = false;
+            enemy.OnDamage(_attackDmg);
+            var enemyPos = other.gameObject.transform;
+            var damageText = GameObject.Find("--DamageUI--").GetComponent<DamageUIManager>();
+            damageText.DamageText(enemyPos,_attackDmg);
+            _count++;
+            if(_count >= 3) _check = false;
         }
     }
 
@@ -88,7 +94,7 @@ public class WeaponSword : MonoBehaviour, IPool
     /// <returns></returns>
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         _check = false;
     }
 }

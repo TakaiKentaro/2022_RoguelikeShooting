@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /// <summary>
 /// レベルアップクラス
@@ -9,7 +10,7 @@ public class LevelUpManager : MonoBehaviour
     [Header("LevelUpCanvas")]
     [SerializeField, Tooltip("レベルアップ用Canvas")] GameObject _canvas;
 
-    [SerializeField, Tooltip("スキルボタン1")] RectTransform[] _button;
+    [Tooltip("スキルボタン1")]public List<RectTransform> _button = new();
 
     [Tooltip("Bool判定")] bool[] _check;
 
@@ -19,7 +20,7 @@ public class LevelUpManager : MonoBehaviour
     {
         GameManager.Instance.SetLevelManager(this);
         foreach (var i in _button) i.gameObject.SetActive(false);
-        _check = new bool[_button.Length];
+        _check = new bool[_button.Count];
         _canvas.gameObject.SetActive(false);
     }
 
@@ -32,7 +33,7 @@ public class LevelUpManager : MonoBehaviour
 
         while (count < 3)
         {
-            int index = Random.Range(0, _button.Length);
+            int index = Random.Range(0, _button.Count);
             Debug.Log(index);
             Debug.Log($"カウント{count}");
             if (_check[index] == true)

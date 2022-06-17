@@ -297,12 +297,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHp: 1
-  _enemyPower: 0.05
+  _enemyPower: 0.1
   _enemySpeed: 2
   _num: 2
   _crystal: {fileID: 3798773938522846890, guid: 10b6267abcfba344e8984e940e87fcb6, type: 3}
   _rnd: 5
-  _audioClip: {fileID: 8300000, guid: 3a74f9baaeb81ac45b26fa2786c51ff7, type: 3}
 --- !u!1 &1024862548671607560
 GameObject:
   m_ObjectHideFlags: 0

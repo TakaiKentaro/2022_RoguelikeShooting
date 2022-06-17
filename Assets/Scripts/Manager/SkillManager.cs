@@ -12,14 +12,19 @@ public class SkillManager : MonoBehaviour
     [Tooltip("HealthUpレベル")] static public int _healthUpLevel;
     [Tooltip("HealthRecoveryレベル")] static public int _healthRecoveryLevel;
 
+    [Header("LevelUpManager")]
+    [SerializeField,Tooltip("LevelUpManager")] LevelUpManager _levelUpManager;
+
     private void Awake()
     {
+        _levelUpManager = GetComponent<LevelUpManager>();
+
         _swordUpLevel = 1;
         _swordPlusLevel = 1;
         _swordIntervalLevel = 0.1f;
         _speedUpLevel = 0.5f;
         _healthUpLevel = 10;
-        _healthRecoveryLevel = 1;
+        _healthRecoveryLevel = 0;
     }
 
     /// <summary>
@@ -37,6 +42,10 @@ public class SkillManager : MonoBehaviour
     public void SwordPlus()
     {
         _swordPlusLevel++;
+        if (_swordPlusLevel >= 8)
+        {
+            _levelUpManager._button.RemoveAt(_levelUpManager._button.Count - 1);
+        }
     }
 
     /// <summary>
