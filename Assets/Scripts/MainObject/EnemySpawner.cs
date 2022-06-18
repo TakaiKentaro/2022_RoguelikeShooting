@@ -117,7 +117,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            _timer -= 0.1f;
+            _timer -= 0.5f;
             yield return new WaitForSeconds(30);
         }
     }

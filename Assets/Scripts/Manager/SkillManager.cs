@@ -8,6 +8,7 @@ public class SkillManager : MonoBehaviour
     [Tooltip("SwordUpレベル")] static public int _swordUpLevel;
     [Tooltip("SwordPlusレベル")] static public int _swordPlusLevel;
     [Tooltip("SwordIntervalレベル")] static public float _swordIntervalLevel;
+    [Tooltip("SwordPenetrationレベル")] static int _swordPenetration;
     [Tooltip("SpeedUpレベル")] static public float _speedUpLevel;
     [Tooltip("HealthUpレベル")] static public int _healthUpLevel;
     [Tooltip("HealthRecoveryレベル")] static public int _healthRecoveryLevel;
@@ -22,6 +23,7 @@ public class SkillManager : MonoBehaviour
         _swordUpLevel = 1;
         _swordPlusLevel = 1;
         _swordIntervalLevel = 0.1f;
+        _swordPenetration = 1;
         _speedUpLevel = 0.5f;
         _healthUpLevel = 10;
         _healthRecoveryLevel = 0;
@@ -54,6 +56,14 @@ public class SkillManager : MonoBehaviour
     public void SwordInterval()
     {
         WeaponSpawner._timer -= _swordIntervalLevel;
+    }
+
+    /// <summary>
+    /// SwordPenetrationスキルを取得
+    /// </summary>
+    public void SwordPenetration()
+    {
+        WeaponSword._maxCount += _swordPenetration;
     }
 
     /// <summary>

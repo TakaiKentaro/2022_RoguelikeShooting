@@ -12,6 +12,7 @@ public class WeaponSword : MonoBehaviour, IPool
     [SerializeField, Tooltip("出る角度")] float _angle = 0;
 
     [Tooltip("カウント")] int _count;
+    [Tooltip("マックスカウント")]public static int _maxCount;
 
     [Tooltip("消える判定")] bool _check = true;
 
@@ -29,6 +30,7 @@ public class WeaponSword : MonoBehaviour, IPool
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody>();
+        _maxCount = 0;
         gameObject.SetActive(false);
     }
 
@@ -84,7 +86,8 @@ public class WeaponSword : MonoBehaviour, IPool
             var damageText = GameObject.Find("--DamageUI--").GetComponent<DamageUIManager>();
             damageText.DamageText(enemyPos,_attackDmg);
             _count++;
-            if(_count >= 3) _check = false;
+            if(_count >= _maxCount) _check = false;
+            Debug.Log($"マックスカウント{_maxCount}");
         }
     }
 
