@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance => _instance;
     //private GameManager() { }
 
+    static public PlayerController Player => _instance._player;
+    static public LevelUpManager LevelUpManager => _instance._levelUpManager;
+    static public InGameManager InGameManager => _instance._inGameManager;
 
     [Tooltip("ƒvƒŒƒCƒ„[")] PlayerController _player;
     public void SetPlayer(PlayerController p) { _player = p; }
@@ -102,8 +105,4 @@ public class GameManager : MonoBehaviour
     {
         _killCount++;
     }
-
-    static public PlayerController Player => _instance._player;
-    static public LevelUpManager LevelUpManager => _instance._levelUpManager;
-    static public InGameManager InGameManager => _instance._inGameManager;
 }

@@ -18,11 +18,12 @@ public interface IPool
 /// <summary>
 /// ObjectPoolの管理クラス
 /// </summary>
-/// <typeparam name="Pool">Poolさせるクラス</typeparam>
-public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
-{   
-    [Tooltip("Poolするオブジェクトを入れるリスト")] List<Pool> _pools;
-    [Tooltip("Poolさせるオブジェクト")] Pool _type;
+/// <typeparam name="TPool">Poolさせるクラス</typeparam>
+public class ObjectPool<TPool> where TPool : MonoBehaviour , IPool
+{
+    /// <summary> Poolするオブジェクトを入れるリスト </summary>
+    List<TPool> _pools;
+    [Tooltip("Poolさせるオブジェクト")] TPool _type;
     [Tooltip("Poolさせる位置")] Transform _parent;
     [Tooltip("Poolしたい数")] int _poolObjectCount　= 100;
 
@@ -32,9 +33,9 @@ public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
     /// <param name="pool"></param>
     /// <param name="parent"></param>
     /// <param name="poolObjectCount"></param>
-    public ObjectPool(Pool pool, Transform parent = null, int poolObjectCount = 100)
+    public ObjectPool(TPool pool, Transform parent = null, int poolObjectCount = 100)
     {
-        _pools = new List<Pool>();
+        _pools = new List<TPool>();
         _type = pool;
         _parent = parent;
         _poolObjectCount = 100;
@@ -49,7 +50,7 @@ public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
     {
         for(int i = 0; i < _poolObjectCount; i++)
         {
-            Pool p = Object.Instantiate(_type);
+            TPool p = Object.Instantiate(_type);
 
             if(_parent != null)
             {
@@ -68,9 +69,9 @@ public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
     /// 使用する際に呼び出す
     /// </summary>
     /// <returns></returns>
-    public Pool Use()
+    public TPool Use()
     {
-        Pool useObj = _pools.FirstOrDefault(p => p.Waiting);
+        TPool useObj = _pools.FirstOrDefault(p => p.Waiting);
 
         if(useObj != null)
         {
@@ -92,7 +93,7 @@ public class ObjectPool<Pool> where Pool : MonoBehaviour , IPool
     /// </summary>
     /// <param name="useObj"></param>
     /// <returns></returns>
-    IEnumerator<Pool> WaitUsing(Pool useObj)
+    IEnumerator<TPool> WaitUsing(TPool useObj)
     {
         while(useObj.Execute())
         {

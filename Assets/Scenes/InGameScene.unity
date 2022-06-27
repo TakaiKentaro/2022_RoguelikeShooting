@@ -11284,6 +11284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1970479628187362868, guid: b33c06985e299274982be65af6a9735e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1970479628187859476, guid: b33c06985e299274982be65af6a9735e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -27025,6 +27029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1970479628187362868, guid: b33c06985e299274982be65af6a9735e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1970479628187859476, guid: b33c06985e299274982be65af6a9735e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -41094,7 +41102,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7775683, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -49406,6 +49414,10 @@ PrefabInstance:
     - target: {fileID: 1970479628187362868, guid: b33c06985e299274982be65af6a9735e, type: 3}
       propertyPath: m_Name
       value: Crystal3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970479628187362868, guid: b33c06985e299274982be65af6a9735e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1970479628187859476, guid: b33c06985e299274982be65af6a9735e, type: 3}
       propertyPath: m_RootOrder
@@ -63288,7 +63300,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7775683, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
